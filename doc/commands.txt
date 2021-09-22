@@ -1,2 +1,5 @@
 npx create-react-app contacts --template typescript
 
+yarn add node-sass
+Node Sass version 6.0.1 is incompatible with ^4.0.0 || ^5.0.0.
+delete node_modules and yarn.lock file. And reinstall yarn packages.
