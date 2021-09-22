@@ -7,3 +7,22 @@ delete node_modules and yarn.lock file. And reinstall yarn packages.
 yarn add @craco/craco
 yarn add craco-alias --dev
 yarn add babel-plugin-root-import --dev
+
+yarn add --dev eslint prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-jsx-a11y eslint-config-prettier eslint-plugin-prettier
+
+Intellij Preferences Setting
+Automatic eslint configuration
+Run eslint --fix on save
+Inspections > ESLint
+
+must delete node_modules and yarn.lock file. And yarn command again for reinstall packages.
+eslint@^7.11.0 is already installed in create-react-app's react-scripts.
+So eslint@^7.32.0 installed again make error. But remove and reinstall packages make resolve it.
+
+rm -rf node_modules
+rm yarn.lock
+yarn
+
+if using NodeJS 15.x then nanocolors@0.1.5 will show error when yarn.
+nonocolors package must use even version NodeJS. And nanocolors package is CRA essential package.
+Use NodeJS even version for CRA project.
