@@ -29,3 +29,6 @@ Use NodeJS even version for CRA project.
 
 yarn add react-router-dom
 yarn add @types/react-router-dom --dev
+
+yarn add styled-components polished classnames
+yarn add @types/styled-components --dev
