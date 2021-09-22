@@ -34,3 +34,6 @@ yarn add styled-components polished classnames
 yarn add @types/styled-components --dev
 
 yarn add react-hook-form yup @hookform/resolvers@2.8.0
+
+yarn add uuid
+yarn add @types/uuid --dev
