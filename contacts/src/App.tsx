@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from '~/logo.svg';
 import '~/App.scss';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {ThemeProvider} from 'styled-components';
+import {theme} from '~/common/theme';
+import Header from '~/common/component/Header';
+import Footer from '~/common/component/Footer';
+import ContactsPage from '~/pages/ContactsPage';
+import PreviewComponentsPage from '~/pages/PreviewComponentsPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Switch>
+        <Route path="/ContactsPage" component={ContactsPage} />
+        <Route path="/PreviewComponentsPage" component={PreviewComponentsPage} />
+        <Redirect to="/ContactsPage" />
+      </Switch>
+      <Footer />
+    </ThemeProvider>
   );
 }
 
