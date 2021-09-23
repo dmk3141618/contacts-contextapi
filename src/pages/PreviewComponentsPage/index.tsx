@@ -127,16 +127,15 @@ function PreviewComponentsPage({}: Props) {
         <Icon icon={'heartFill'} />
         <Icon icon={'heartBlank'} />
       </AppBlock>
-      <AppBlock></AppBlock>
       <Dialog
-        title="정말로 삭제하시겠습니까?"
-        confirmText="삭제"
-        cancelText="취소"
+        title="Delete"
+        confirmText="Delete"
+        cancelText="Cancel"
         onConfirm={onConfirm}
         onCancel={onCancel}
         visible={showDialog}
       >
-        데이터를 정말로 삭제하시겠습니까?
+        Are you sure to delete?
       </Dialog>
     </PageWrap>
   );
