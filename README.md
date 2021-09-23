@@ -5,14 +5,14 @@
 
 ### environment
 ```
-nodejs version 16
-npm install yarn -g
+nvm use
 ```
 
 ### run
 ```
-# cd contacts
-# yarn
-# yarn start
-# yarn test
+# git clone [repo]
+# cd [repo]
+# npm install
+# npm run start
+# npm run test
 ```
