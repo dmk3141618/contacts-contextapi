@@ -65,7 +65,7 @@ export function ContactsContextProvider({children}: {children: React.ReactNode})
     contacts: [],
     isOnlyFavorites: false,
   });
-  const [storedValue, setValue] = useLocalStorage('contacts', contactsState);
+  const [storedValue, setValue] = useLocalStorage('contactsforcontextapi', contactsState);
 
   useEffect(() => {
     dispatch({
