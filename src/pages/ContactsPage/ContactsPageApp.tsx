@@ -250,14 +250,13 @@ function ContactsPageApp({}: Props) {
   const contacts = selectAllOrFavorites(contactsState);
   const isOnlyFavorites = selectIsOnlyFavorites(contactsState);
 
+  // contactForm title (add or edit)
+  const [contactFormTitle, setContactFormTitle] = useState<string>('Add a new contact');
+
   // filter
   const onShowOnlyFavoritesToggle = useCallback(() => {
     dispatch({type: 'TOGGLE_IS_ONLY_FAVORITES'});
   }, [dispatch]);
-
-  // const contacts = useSelector((state: RootState) => selectAllContacts(state));
-  // const contactsFavorite = useSelector((state: RootState) => selectFavoriteContacts(state));
-  // const contacts = useSelector((state: RootState) => selectAllOrFavoriteContacts(state, isShowOnlyFavorites));
 
   // delete
   const [selectedContact, setSelectedContact] = useState<IContact | null>(null);
@@ -308,6 +307,7 @@ function ContactsPageApp({}: Props) {
   });
   const [showContactFormDialog, setShowContactFormDialog] = useState<boolean>(false);
   const onClickAddContactForm = useCallback(() => {
+    setContactFormTitle('Add a new contact');
     setShowContactFormDialog(true);
   }, []);
   const onConfirmContactForm = useCallback(() => {
@@ -346,6 +346,7 @@ function ContactsPageApp({}: Props) {
   // edit
   const onClickEditContactForm = useCallback(
     (contact: IContact) => () => {
+      setContactFormTitle('Edit a contact');
       setSelectedContact(contact);
       setValueContactForm('name', contact.name);
       setValueContactForm('email', contact.email);
@@ -463,7 +464,7 @@ function ContactsPageApp({}: Props) {
         Are you sure to delete?
       </Dialog>
       <DialogFull
-        title="Add new contact"
+        title={contactFormTitle}
         confirmText="Confirm"
         cancelText="Cancel"
         onConfirm={onConfirmContactForm}
