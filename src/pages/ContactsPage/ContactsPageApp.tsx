@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import Button from '~/common/component/Button';
 import Icon from '~/common/component/Icon';
@@ -237,6 +237,19 @@ const ContactForm = styled.div`
   }
 `;
 
+const ButtonGroup = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const DialogButton = styled(Button)`
+  font-size: 1.5rem;
+  & + & {
+    margin-left: 0.5rem;
+  }
+`;
+
 interface ContactFormValuesType {
   name: string;
   email: string;
@@ -281,7 +294,6 @@ function ContactsPageApp({}: Props) {
   }, []);
 
   // create
-  const contactForm = useRef<HTMLFormElement>(null);
   const contactFormValidation = yup.object().shape({
     name: yup.string().required('Required'),
     email: yup.string().email('Invalid email address').required('Required'),
@@ -309,9 +321,6 @@ function ContactsPageApp({}: Props) {
   const onClickAddContactForm = useCallback(() => {
     setContactFormTitle('Add a new contact');
     setShowContactFormDialog(true);
-  }, []);
-  const onConfirmContactForm = useCallback(() => {
-    contactForm.current?.requestSubmit();
   }, []);
   const onCancelContactForm = useCallback(() => {
     setShowContactFormDialog(false);
@@ -463,16 +472,9 @@ function ContactsPageApp({}: Props) {
       >
         Are you sure to delete?
       </Dialog>
-      <DialogFull
-        title={contactFormTitle}
-        confirmText="Confirm"
-        cancelText="Cancel"
-        onConfirm={onConfirmContactForm}
-        onCancel={onCancelContactForm}
-        visible={showContactFormDialog}
-      >
+      <DialogFull title={contactFormTitle} visible={showContactFormDialog}>
         <ContactForm>
-          <form ref={contactForm} onSubmit={onSubmitContactForm}>
+          <form onSubmit={onSubmitContactForm}>
             <div className="field">
               <label htmlFor="name">Name</label>
               <input id="name" {...register('name')} autoComplete="off" />
@@ -488,6 +490,14 @@ function ContactsPageApp({}: Props) {
               <input id="phone" {...register('phone')} autoComplete="off" />
               <div className="error">{errors.phone?.message}</div>
             </div>
+            <ButtonGroup>
+              <DialogButton color="grayBase" onClick={onCancelContactForm} size={'large'}>
+                Cancel
+              </DialogButton>
+              <DialogButton color="deepPink" size={'large'} type="submit">
+                Confirm
+              </DialogButton>
+            </ButtonGroup>
           </form>
         </ContactForm>
       </DialogFull>
